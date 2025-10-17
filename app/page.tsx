@@ -4,7 +4,7 @@ import { Hero } from "@/components/hero"
 import { Features } from "@/components/features"
 import { WhatIsIA } from "@/components/what-is-ia"
 import { WhyTryIA } from "@/components/why-try-ia"
-import { DownloadForm } from "@/components/download-form"
+import { WaitlistForm } from "@/components/download-form"
 import { Footer } from "@/components/footer"
 
 export default function LandingPage() {
@@ -14,7 +14,7 @@ export default function LandingPage() {
       <Features />
       <WhatIsIA />
       <WhyTryIA />
-      <DownloadForm />
+      <WaitlistForm />
       <Footer />
     </main>
   )

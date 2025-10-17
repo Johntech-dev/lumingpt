@@ -13,6 +13,7 @@ interface Download {
   id: string
   name: string
   email: string
+  country: string
   createdAt: string
   updatedAt: string
 }
@@ -65,10 +66,11 @@ export default function AdminDashboard() {
 
   const exportToCSV = () => {
     const csvContent = [
-      ['Name', 'Email', 'Download Date'].join(','),
+      ['Name', 'Email', 'Country', 'Download Date'].join(','),
       ...downloads.map(download => [
         `"${download.name}"`,
         `"${download.email}"`,
+        `"${download.country}"`,
         `"${new Date(download.createdAt).toLocaleDateString()}"`
       ].join(','))
     ].join('\n')
@@ -193,6 +195,7 @@ export default function AdminDashboard() {
                     <TableRow>
                       <TableHead>Name</TableHead>
                       <TableHead>Email</TableHead>
+                      <TableHead>Country</TableHead>
                       <TableHead>Download Date</TableHead>
                       <TableHead>Status</TableHead>
                     </TableRow>
@@ -202,6 +205,7 @@ export default function AdminDashboard() {
                       <TableRow key={download.id}>
                         <TableCell className="font-medium">{download.name}</TableCell>
                         <TableCell>{download.email}</TableCell>
+                        <TableCell>{download.country}</TableCell>
                         <TableCell>
                           {new Date(download.createdAt).toLocaleDateString()} at{' '}
                           {new Date(download.createdAt).toLocaleTimeString()}
