@@ -53,7 +53,7 @@ export async function POST(request: Request) {
           </div>
           
           <div style="text-align: center; margin: 30px 0;">
-            <a href="https://wa.me/1234567890?text=Hi! I just downloaded the AKEA GPT Activation Prompt and want to join the community!" 
+            <a href="https://chat.whatsapp.com/LgpXpfkOZC6ANUWNWxp3I8?mode=wwt" 
                style="background: #25d366; color: white; padding: 15px 30px; text-decoration: none; border-radius: 25px; font-weight: bold; display: inline-block;">
               📱 Join WhatsApp Community
             </a>

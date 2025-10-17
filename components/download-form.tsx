@@ -170,7 +170,7 @@ export function DownloadForm() {
               
               <Button
                 onClick={() => {
-                  window.open('https://wa.me/1234567890?text=Hi! I just downloaded the AKEA GPT Activation Prompt and want to join the community!', '_blank')
+                  window.open('https://chat.whatsapp.com/LgpXpfkOZC6ANUWNWxp3I8?mode=wwt', '_blank')
                 }}
                 className="w-full bg-green-600 hover:bg-green-700 text-white"
               >
