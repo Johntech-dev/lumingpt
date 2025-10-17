@@ -10,6 +10,19 @@ export async function POST(request: Request) {
   try {
     const { name, email } = await request.json()
 
+    console.log('API called with:', { name, email })
+
+    // Validate environment variables
+    if (!process.env.RESEND_API_KEY) {
+      console.error('RESEND_API_KEY not found')
+      return NextResponse.json({ error: "Email service not configured" }, { status: 500 })
+    }
+
+    if (!process.env.DATABASE_URL) {
+      console.error('DATABASE_URL not found')
+      return NextResponse.json({ error: "Database not configured" }, { status: 500 })
+    }
+
     // Save user data to database
     const download = await prisma.download.create({
       data: {
@@ -22,7 +35,16 @@ export async function POST(request: Request) {
 
     // Read the PDF file
     const pdfPath = join(process.cwd(), 'public', 'AKEA GPT _ Activation Prompt.pdf')
-    const pdfBuffer = readFileSync(pdfPath)
+    console.log('PDF path:', pdfPath)
+    
+    let pdfBuffer
+    try {
+      pdfBuffer = readFileSync(pdfPath)
+      console.log('PDF file read successfully, size:', pdfBuffer.length)
+    } catch (pdfError) {
+      console.error('Error reading PDF file:', pdfError)
+      return NextResponse.json({ error: "PDF file not found" }, { status: 500 })
+    }
 
     // Send email with PDF attachment
     const { data, error } = await resend.emails.send({

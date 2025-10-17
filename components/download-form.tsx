@@ -43,9 +43,17 @@ export function DownloadForm() {
         body: JSON.stringify({ name, email }),
       })
 
+      console.log('Response status:', response.status)
+      console.log('Response ok:', response.ok)
+
       if (!response.ok) {
-        throw new Error('Failed to send email')
+        const errorData = await response.json()
+        console.error('API Error:', errorData)
+        throw new Error(`Failed to send email: ${errorData.error || 'Unknown error'}`)
       }
+
+      const result = await response.json()
+      console.log('Success result:', result)
 
       setShowModal(true)
       setName("")
@@ -59,7 +67,7 @@ export function DownloadForm() {
       console.error("Form submission error:", error)
       toast({
         title: "Error",
-        description: "Something went wrong. Please try again.",
+        description: error instanceof Error ? error.message : "Something went wrong. Please try again.",
         variant: "destructive",
       })
     } finally {
